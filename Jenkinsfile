@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                echo "fetch the source code from this -> ${DIRECTORY_PATH}"
+                // echo "fetch the source code from this -> ${DIRECTORY_PATH}"
                 echo "Building"
                 echo "Build automation tool: Maven"
                 sh './mvnw clean package'
