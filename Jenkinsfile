@@ -9,7 +9,7 @@ pipeline{
 
     tools {
         maven '3.9.6'
-        jdk 'JDK_21'
+        // jdk 'JDK_21'
     }
     
     stages{
@@ -18,6 +18,7 @@ pipeline{
                 // echo "fetch the source code from this -> ${DIRECTORY_PATH}"
                 echo "Building"
                 echo "Build automation tool: Maven"
+                sh 'java -version'
                 sh 'mvn -version'
                 sh 'mvn clean package'
             }
