@@ -23,30 +23,18 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
-        // stage('Test'){
-        //     steps{
-        //         echo "unit testing using -> Katalon"
-        //         echo "integration testing using -> Selenium"
-        //     }
-        //     post{
-        //         success{
-        //             emailext(
-        //                 to: 'daezelgoyal01@gmail.com',
-        //                 subject: 'Testing',
-        //                 body: 'Testing successfuly completed!!!', 
-        //                 attachLog: true
-        //             )
-        //         }
-        //         failure{
-        //             emailext(
-        //                 to: 'daezelgoyal01@gmail.com',
-        //                 subject: 'Testing',
-        //                 body: 'Testing Failed!!!', 
-        //                 attachLog: true   
-        //             )
-        //         }
-        //     }
-        // }
+        stage('Test'){
+            steps{
+                // echo "unit testing using -> Katalon"
+                // echo "integration testing using -> Selenium"
+                sh 'mvn test'
+            }
+            post{
+                success{
+                    echo"Testing successful!!"
+                }
+            }
+        }
         // stage('Code Quality Check'){
         //     steps{
         //         echo "checking the quality of the code"
