@@ -11,7 +11,7 @@ pipeline{
                 // echo "fetch the source code from this -> ${DIRECTORY_PATH}"
                 echo "Building"
                 echo "Build automation tool: Maven"
-                sh './mvnw clean package'
+                sh 'mvn clean package'
             }
         }
         // stage('Test'){
