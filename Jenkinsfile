@@ -6,6 +6,10 @@ pipeline{
     //     TESTING_ENVIRONMENT="AWS EC2"
     //     PRODUCTION_ENVIRONMENT="AWS EC2"
     // }
+
+    tools {
+        maven '3.9.6'
+    }
     
     stages{
         stage('Build'){
