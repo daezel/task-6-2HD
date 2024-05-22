@@ -13,6 +13,7 @@ pipeline{
                 // echo "fetch the source code from this -> ${DIRECTORY_PATH}"
                 echo "Building"
                 echo "Build automation tool: Maven"
+                sh 'mvn -version'
                 sh 'mvn clean package'
             }
         }
