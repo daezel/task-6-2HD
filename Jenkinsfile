@@ -2,7 +2,6 @@ pipeline{
     agent any
     tools{
         maven '3.9.6'
-        jdk 'JDK 21'
     }
     // environment{
     //     DIRECTORY_PATH ="https://github.com/daezel/jenkin6_1.git"
