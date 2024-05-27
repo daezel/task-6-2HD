@@ -50,7 +50,7 @@ pipeline {
             steps {
                 echo "building docker image"
                 bat "docker --version"
-                bat "docker build -t my-spring-boot-project:latest"
+                bat "docker build -t my-spring-boot-project ."
                 // script {
                 //     docker.build(env.DOCKER_IMAGE)
                 // }
