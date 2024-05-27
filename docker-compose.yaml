@@ -13,7 +13,7 @@ services:
     image: my-spring-boot-project
     build: .
     ports:
-      - "8080:8081"
+      - "8081:8081"
       # - "9090:9090"
     # environment:
     #   - ENV_VAR=example
