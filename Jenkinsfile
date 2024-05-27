@@ -21,7 +21,7 @@ pipeline{
                 bat 'java -version'
                 bat 'mvn -version'
                 bat 'docker --version'
-
+                bat 'mvn clean package'
             // sh 'mvn clean package'
             }
         }
