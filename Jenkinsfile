@@ -19,7 +19,7 @@ pipeline{
                 echo "Building"
                 echo "Build automation tool: Maven"
                 bat 'java -version'
-                // sh 'mvn -version'
+                bat 'mvn -version'
                 // sh 'docker -version'
 
             // sh 'mvn clean package'
