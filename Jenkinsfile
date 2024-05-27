@@ -11,76 +11,76 @@ pipeline{
     //     maven '3.9.6'
     //     //jdk 'JDK 17'
     // }
-    
+
     stages{
         stage('Build'){
             steps{
                 // echo "fetch the source code from this -> ${DIRECTORY_PATH}"
                 echo "Building"
                 echo "Build automation tool: Maven"
-                sh 'java -version'
+                bat 'java -version'
                 // sh 'mvn -version'
                 // sh 'docker -version'
 
-                // sh 'mvn clean package'
+            // sh 'mvn clean package'
             }
         }
-        // stage('Test'){
-        //     steps{
-        //         // echo "unit testing using -> Katalon"
-        //         // echo "integration testing using -> Selenium"
-        //         sh 'mvn test'
-        //     }
-        //     post{
-        //         success{
-        //             echo"Testing successful!!"
-        //         }
-        //     }
-        // }
-        // stage('Code Quality Check'){
-        //     steps{
-        //         echo "checking the quality of the code"
-        //         echo "code analysis tool-> SonarQube"
-        //         echo "Done!!!"
-        //     }
-        // }
-        // stage('Security Scan') {
-        //     steps {
-        //         echo "Perform a security scan on the code using -> OWASP Dependency-Check"
-        //     }
-        //     post{
-        //         success{
-        //             emailext(
-        //                 to: 'daezelgoyal01@gmail.com',
-        //                 subject: 'Security Scan',
-        //                 body: 'Security Scan Tests successfuly completed!!!', 
-        //                 attachLog: true
-        //             )   
-        //         }
-        //         failure{
-        //             emailext(
-        //                 to: 'daezelgoyal01@gmail.com',
-        //                 subject: 'Security Scan',
-        //                 body: 'Security Scan Tests Failed!!!', 
-        //                 attachLog: true   
-        //             )    
-        //         }
-        //     }
-        // }
-        // stage('Deploy to Staging'){
-        //     steps{
-        //         echo "deploy the application to ${TESTING_ENVIRONMENT}"
-        //     }
-        // }
-        // stage('integration test on staging') {
-        //     steps {
-        //         echo 'running integration test on staging'
-        //     }
-        // }
-        // stage('Deploy to Production'){
-        //     steps{
-        //         echo "Deployment to ->  ${PRODUCTION_ENVIRONMENT} Started and completed!"
-        //     }
-        // }
+    // stage('Test'){
+    //     steps{
+    //         // echo "unit testing using -> Katalon"
+    //         // echo "integration testing using -> Selenium"
+    //         sh 'mvn test'
+    //     }
+    //     post{
+    //         success{
+    //             echo"Testing successful!!"
+    //         }
+    //     }
+    // }
+    // stage('Code Quality Check'){
+    //     steps{
+    //         echo "checking the quality of the code"
+    //         echo "code analysis tool-> SonarQube"
+    //         echo "Done!!!"
+    //     }
+    // }
+    // stage('Security Scan') {
+    //     steps {
+    //         echo "Perform a security scan on the code using -> OWASP Dependency-Check"
+    //     }
+    //     post{
+    //         success{
+    //             emailext(
+    //                 to: 'daezelgoyal01@gmail.com',
+    //                 subject: 'Security Scan',
+    //                 body: 'Security Scan Tests successfuly completed!!!', 
+    //                 attachLog: true
+    //             )   
+    //         }
+    //         failure{
+    //             emailext(
+    //                 to: 'daezelgoyal01@gmail.com',
+    //                 subject: 'Security Scan',
+    //                 body: 'Security Scan Tests Failed!!!', 
+    //                 attachLog: true   
+    //             )    
+    //         }
+    //     }
+    // }
+    // stage('Deploy to Staging'){
+    //     steps{
+    //         echo "deploy the application to ${TESTING_ENVIRONMENT}"
+    //     }
+    // }
+    // stage('integration test on staging') {
+    //     steps {
+    //         echo 'running integration test on staging'
+    //     }
+    // }
+    // stage('Deploy to Production'){
+    //     steps{
+    //         echo "Deployment to ->  ${PRODUCTION_ENVIRONMENT} Started and completed!"
+    //     }
+    // }
     }
 }
