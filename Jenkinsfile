@@ -25,18 +25,18 @@ pipeline{
             // sh 'mvn clean package'
             }
         }
-    // stage('Test'){
-    //     steps{
-    //         // echo "unit testing using -> Katalon"
-    //         // echo "integration testing using -> Selenium"
-    //         sh 'mvn test'
-    //     }
-    //     post{
-    //         success{
-    //             echo"Testing successful!!"
-    //         }
-    //     }
-    // }
+    stage('Test'){
+        steps{
+            // echo "unit testing using -> Katalon"
+            // echo "integration testing using -> Selenium"
+            bat 'mvn test'
+        }
+        post{
+            success{
+                echo"Testing successful!!"
+            }
+        }
+    }
     // stage('Code Quality Check'){
     //     steps{
     //         echo "checking the quality of the code"
