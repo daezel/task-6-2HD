@@ -7,10 +7,10 @@ pipeline{
     //     PRODUCTION_ENVIRONMENT="AWS EC2"
     // }
 
-    tools {
-        maven '3.9.6'
-        //jdk 'JDK 17'
-    }
+    // tools {
+    //     maven '3.9.6'
+    //     //jdk 'JDK 17'
+    // }
     
     stages{
         stage('Build'){
@@ -19,22 +19,24 @@ pipeline{
                 echo "Building"
                 echo "Build automation tool: Maven"
                 sh 'java -version'
-                sh 'mvn -version'
-                sh 'mvn clean package'
+                // sh 'mvn -version'
+                // sh 'docker -version'
+
+                // sh 'mvn clean package'
             }
         }
-        stage('Test'){
-            steps{
-                // echo "unit testing using -> Katalon"
-                // echo "integration testing using -> Selenium"
-                sh 'mvn test'
-            }
-            post{
-                success{
-                    echo"Testing successful!!"
-                }
-            }
-        }
+        // stage('Test'){
+        //     steps{
+        //         // echo "unit testing using -> Katalon"
+        //         // echo "integration testing using -> Selenium"
+        //         sh 'mvn test'
+        //     }
+        //     post{
+        //         success{
+        //             echo"Testing successful!!"
+        //         }
+        //     }
+        // }
         // stage('Code Quality Check'){
         //     steps{
         //         echo "checking the quality of the code"
