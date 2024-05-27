@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = 'my-spring-boot-project:latest'
-    }
+    // environment {
+    //     DOCKER_IMAGE = 'my-spring-boot-project:latest'
+    // }
 
     // tools {
     //     maven '3.9.6'
@@ -49,9 +49,10 @@ pipeline {
         stage('Docker image Build') {
             steps {
                 echo "building docker image"
-                script {
-                    docker.build(env.DOCKER_IMAGE)
-                }
+                bat "docker --version"
+                // script {
+                //     docker.build(env.DOCKER_IMAGE)
+                // }
             }
         }
 
