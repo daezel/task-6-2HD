@@ -1,9 +1,10 @@
 pipeline {
     agent any
 
-    // environment {
-    //     DOCKER_IMAGE = 'my-spring-boot-project:latest'
-    // }
+    environment {
+        // DOCKER_IMAGE = 'my-spring-boot-project:latest'
+        DATADOG_API_KEY = credentials('datadog-api-key')
+    }
 
     // tools {
     //     maven '3.9.6'
@@ -62,6 +63,20 @@ pipeline {
                 echo "Docker Deployment"
                 bat "docker-compose down"
                 bat "docker-compose up -d --build"
+            }
+        }
+
+        stage('Monitoring') {
+            steps {
+                bat '''curl -X POST "https://api.datadoghq.com/api/v1/events" \
+                        -H "Content-Type: application/json" \
+                        -H "DD-API-KEY: ${DATADOG_API_KEY}" \
+                        -d '{
+                              "title": "Deployment Successful",
+                              "text": "The application has been successfully deployed.",
+                              "alert_type": "success"
+                            }'
+                '''
             }
         }
 
