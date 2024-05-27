@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     agent any
 
     // environment{
@@ -12,12 +12,12 @@ pipeline{
     //     //jdk 'JDK 17'
     // }
 
-    stages{
-        stage('Build'){
-            steps{
+    stages {
+        stage('Build') {
+            steps {
                 // echo "fetch the source code from this -> ${DIRECTORY_PATH}"
-                echo "Building"
-                echo "Build automation tool: Maven"
+                echo 'Building'
+                echo 'Build automation tool: Maven'
                 bat 'java -version'
                 bat 'mvn -version'
                 bat 'docker --version'
@@ -25,28 +25,28 @@ pipeline{
             // sh 'mvn clean package'
             }
         }
-    stage('Test'){
-        steps{
-            // echo "unit testing using -> Katalon"
-            // echo "integration testing using -> Selenium"
-            bat 'mvn test'
-        }
-        post{
-            success{
-                echo"Testing successful!!"
+        stage('Test') {
+            steps {
+                // echo "unit testing using -> Katalon"
+                // echo "integration testing using -> Selenium"
+                bat 'mvn test'
+            }
+            post {
+                success {
+                    echo'Testing successful!!'
+                }
             }
         }
-    }
-    stage('Code Quality Check'){
-        steps{
-            echo "checking the quality of the code"
-            echo "code analysis tool-> SonarQube"
-            echo "Done!!!"
-            withSonarQubeEnv('sonarqube') {
-                bat "mvn sonar:sonar"
+        stage('Code Quality Check') {
+            steps {
+                echo 'checking the quality of the code'
+                echo 'code analysis tool-> SonarQube'
+                echo 'Done!!!'
+                withSonarQubeEnv('sonarqube') {
+                    bat 'mvn sonar:sonar'
+                }
             }
         }
-    }
     // stage('Security Scan') {
     //     steps {
     //         echo "Perform a security scan on the code using -> OWASP Dependency-Check"
@@ -56,17 +56,17 @@ pipeline{
     //             emailext(
     //                 to: 'daezelgoyal01@gmail.com',
     //                 subject: 'Security Scan',
-    //                 body: 'Security Scan Tests successfuly completed!!!', 
+    //                 body: 'Security Scan Tests successfuly completed!!!',
     //                 attachLog: true
-    //             )   
+    //             )
     //         }
     //         failure{
     //             emailext(
     //                 to: 'daezelgoyal01@gmail.com',
     //                 subject: 'Security Scan',
-    //                 body: 'Security Scan Tests Failed!!!', 
-    //                 attachLog: true   
-    //             )    
+    //                 body: 'Security Scan Tests Failed!!!',
+    //                 attachLog: true
+    //             )
     //         }
     //     }
     // }
