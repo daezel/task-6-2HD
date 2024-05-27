@@ -57,6 +57,14 @@ pipeline {
             }
         }
 
+        stage('Docker Deployment') {
+            steps {
+                echo "Docker Deployment"
+                bat "docker-compose down"
+                bat "docker up -d --build"
+            }
+        }
+
     // stage('Security Scan') {
     //     steps {
     //         echo "Perform a security scan on the code using -> OWASP Dependency-Check"
