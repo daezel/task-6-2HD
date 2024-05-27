@@ -67,14 +67,26 @@ pipeline {
         }
 
         stage('Monitoring') {
+            // steps {
+            //     bat '''curl -X POST "https://api.datadoghq.com/api/v1/events" \
+            //             -H "Content-Type: application/json" \
+            //             -H "DD-API-KEY: ${DATADOG_API_KEY}" \
+            //             -d "{
+            //                   "title": "Deployment Successful",
+            //                   "text": "The application has been successfully deployed.",
+            //                   "alert_type": "success"
+            //                 }"
+            //     '''
+            // }
             steps {
-                bat '''curl -X POST "https://api.datadoghq.com/api/v1/events" \
-                        -H "Content-Type: application/json" \
-                        -H "DD-API-KEY: ${DATADOG_API_KEY}" \
+                bat '''
+                    curl -X POST "https://api.datadoghq.com/api/v1/events" ^
+                        -H "Content-Type: application/json" ^
+                        -H "DD-API-KEY: %DATADOG_API_KEY%" ^
                         -d "{
-                              "title": "Deployment Successful",
-                              "text": "The application has been successfully deployed.",
-                              "alert_type": "success"
+                              \\"title\\": \\"Deployment Successful\\",
+                              \\"text\\": \\"The application has been successfully deployed.\\",
+                              \\"alert_type\\": \\"success\\"
                             }"
                 '''
             }
