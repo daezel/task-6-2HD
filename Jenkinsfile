@@ -71,11 +71,11 @@ pipeline {
                 bat '''curl -X POST "https://api.datadoghq.com/api/v1/events" \
                         -H "Content-Type: application/json" \
                         -H "DD-API-KEY: ${DATADOG_API_KEY}" \
-                        -d '{
+                        -d "{
                               "title": "Deployment Successful",
                               "text": "The application has been successfully deployed.",
                               "alert_type": "success"
-                            }'
+                            }"
                 '''
             }
         }
@@ -89,7 +89,7 @@ pipeline {
     //             emailext(
     //                 to: 'daezelgoyal01@gmail.com',
     //                 subject: 'Security Scan',
-    //                 body: 'Security Scan Tests successfuly completed!!!',
+    //                 body: 'Security Scan Tests successfuly completed!!',
     //                 attachLog: true
     //             )
     //         }
