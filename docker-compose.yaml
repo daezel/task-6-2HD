@@ -3,5 +3,4 @@ services:
   app:
     image: my-spring-boot-project
     build: .
-    ports: 
-      -"8081:8081"
+    ports: "8081:8081"
