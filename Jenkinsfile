@@ -37,13 +37,16 @@ pipeline{
             }
         }
     }
-    // stage('Code Quality Check'){
-    //     steps{
-    //         echo "checking the quality of the code"
-    //         echo "code analysis tool-> SonarQube"
-    //         echo "Done!!!"
-    //     }
-    // }
+    stage('Code Quality Check'){
+        steps{
+            echo "checking the quality of the code"
+            echo "code analysis tool-> SonarQube"
+            echo "Done!!!"
+            withSonarQubeEnv('sonarqube') {
+                bat "mvn sonar:sonar"
+            }
+        }
+    }
     // stage('Security Scan') {
     //     steps {
     //         echo "Perform a security scan on the code using -> OWASP Dependency-Check"
