@@ -1,11 +1,9 @@
 pipeline {
     agent any
 
-    // environment{
-    //     DIRECTORY_PATH ="https://github.com/daezel/jenkin6_1.git"
-    //     TESTING_ENVIRONMENT="AWS EC2"
-    //     PRODUCTION_ENVIRONMENT="AWS EC2"
-    // }
+    environment {
+        DOCKER_IMAGE = 'my-spring-boot-project:latest'
+    }
 
     // tools {
     //     maven '3.9.6'
@@ -47,6 +45,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker image Build') {
+            steps {
+                echo "building docker image"
+                script {
+                    docker.build(env.DOCKER_IMAGE)
+                }
+            }
+        }
+
     // stage('Security Scan') {
     //     steps {
     //         echo "Perform a security scan on the code using -> OWASP Dependency-Check"
