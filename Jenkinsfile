@@ -15,6 +15,11 @@ pipeline {
                 bat 'docker --version'
                 bat 'mvn clean package'
             }
+            post {
+                success {
+                    echo 'Build successful!!'
+                }
+            }
         }
         stage('Test') {
             steps {
@@ -39,17 +44,17 @@ pipeline {
 
         stage('Docker image Build') {
             steps {
-                echo "building docker image"
-                bat "docker --version"
-                bat "docker build -t my-spring-boot-project ."
+                echo 'building docker image'
+                bat 'docker --version'
+                bat 'docker build -t my-spring-boot-project .'
             }
         }
 
         stage('Docker Deployment') {
             steps {
-                echo "Docker Deployment"
-                bat "docker-compose down"
-                bat "docker-compose up -d --build"
+                echo 'Docker Deployment'
+                bat 'docker-compose down'
+                bat 'docker-compose up -d --build'
             }
         }
 
@@ -61,6 +66,11 @@ pipeline {
                         -H "DD-API-KEY: %DATADOG_API_KEY%" ^
                         -d "{\\"title\\": \\"Deployment Successful\\", \\"text\\": \\"The application has been successfully deployed.\\", \\"alert_type\\": \\"success\\"}"
                 '''
+            }
+            post {
+                success {
+                    echo 'Monitoring successful!!'
+                }
             }
         }
     }
