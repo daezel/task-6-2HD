@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // DOCKER_IMAGE = 'my-spring-boot-project:latest'
         DATADOG_API_KEY = credentials('datadog-api-key')
     }
 
