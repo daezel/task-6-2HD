@@ -16,6 +16,10 @@ public class HelloWorld {
                 "body { font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }" +
                 ".clock { font-size: 48px; margin-top: 20px; }" +
                 "</style>" +
+                "</head>" +
+                "<body onload='startTime()'>" +
+                "<h1>Hello World</h1>" +
+                "<div class='clock' id='clock'></div>" +
                 "<script>" +
                 "function startTime() {" +
                 "  const today = new Date();" +
@@ -31,11 +35,8 @@ public class HelloWorld {
                 "  if (i < 10) { i = '0' + i; }  // add zero in front of numbers < 10" +
                 "  return i;" +
                 "}" +
+                "startTime();" +  // Ensure the function is called after definition
                 "</script>" +
-                "</head>" +
-                "<body onload='startTime()'>" +
-                "<h1>Hello World</h1>" +
-                "<div class='clock' id='clock'></div>" +
                 "</body>" +
                 "</html>";
     }    
