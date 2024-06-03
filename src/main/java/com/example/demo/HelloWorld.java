@@ -32,18 +32,28 @@ public class HelloWorld {
                 "}" +
                 "function getWeather() {" +
                 "  fetch('https://api.openweathermap.org/data/2.5/weather?q=YOUR_CITY&appid=YOUR_API_KEY&units=metric')" +
-                "    .then(response => response.json())" +
+                "    .then(response => {" +
+                "      if (!response.ok) {" +
+                "        throw new Error('Network response was not ok ' + response.statusText);" +
+                "      }" +
+                "      return response.json();" +
+                "    })" +
                 "    .then(data => {" +
                 "      const weatherDiv = document.getElementById('weather');" +
-                "      const weather = `Weather in ${data.name}: ${data.weather[0].description}, ${data.main.temp}°C`;" +
-                "      weatherDiv.textContent = weather;" +
+                "      if (data.weather && data.weather.length > 0) {" +
+                "        const weather = `Weather in ${data.name}: ${data.weather[0].description}, ${data.main.temp}°C`;" +
+                "        weatherDiv.textContent = weather;" +
+                "      } else {" +
+                "        weatherDiv.textContent = 'Weather data not available';" +
+                "      }" +
                 "    })" +
                 "    .catch(error => {" +
                 "      console.error('Error fetching weather data:', error);" +
+                "      document.getElementById('weather').textContent = 'Error fetching weather data';" +
                 "    });" +
                 "}" +
                 "</script>" +
                 "</body>" +
                 "</html>";
-    }    
+    }
 }
