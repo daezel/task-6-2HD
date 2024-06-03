@@ -31,7 +31,10 @@ public class HelloWorld {
                 "  }, 1000);" +
                 "}" +
                 "function getWeather() {" +
-                "  fetch('https://api.openweathermap.org/data/2.5/weather?q=Lyndhurst,Melbourne&appid=b5811da374af1ff311a213b0eef3ecc8&units=metric')" +
+                "  const apiKey = 'ecb053d90e4eb389d1491ff679de64e7';" +
+                "  const city = 'Lyndhurst,AU';" +  // Ensure the city and country code are correct
+                "  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;" +
+                "  fetch(url)" +
                 "    .then(response => {" +
                 "      if (!response.ok) {" +
                 "        throw new Error('Network response was not ok ' + response.statusText);" +
