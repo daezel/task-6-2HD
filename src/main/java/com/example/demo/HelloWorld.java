@@ -15,13 +15,15 @@ public class HelloWorld {
                 "body { font-family: Arial, sans-serif; text-align: center; padding-top: 50px; background-color: #f0f8ff; }" +
                 "h1 { color: #4682b4; }" +
                 ".clock { font-size: 48px; margin-top: 20px; color: #333; }" +
-                ".weather { font-size: 24px; margin-top: 20px; color: #4682b4; }" +
+                ".message { font-size: 24px; margin-top: 20px; color: #333; }" +
+                ".quote { font-size: 20px; margin-top: 20px; color: #4682b4; }" +
                 "</style>" +
                 "</head>" +
-                "<body onload=\"startClock(); getWeather();\">" +
+                "<body onload=\"startClock(); displayMessage(); displayQuote();\">" +
                 "<h1>Hello World</h1>" +
                 "<div class=\"clock\" id=\"clock\"></div>" +
-                "<div class=\"weather\" id=\"weather\"></div>" +
+                "<div class=\"message\" id=\"message\"></div>" +
+                "<div class=\"quote\" id=\"quote\"></div>" +
                 "<script>" +
                 "function startClock() {" +
                 "  setInterval(() => {" +
@@ -30,30 +32,30 @@ public class HelloWorld {
                 "    document.getElementById('clock').textContent = timeString;" +
                 "  }, 1000);" +
                 "}" +
-                "function getWeather() {" +
-                "  const apiKey = 'ecb053d90e4eb389d1491ff679de64e7';" +
-                "  const city = 'Lyndhurst,AU';" +  // Ensure the city and country code are correct
-                "  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;" +
-                "  fetch(url)" +
-                "    .then(response => {" +
-                "      if (!response.ok) {" +
-                "        throw new Error('Network response was not ok ' + response.statusText);" +
-                "      }" +
-                "      return response.json();" +
-                "    })" +
-                "    .then(data => {" +
-                "      const weatherDiv = document.getElementById('weather');" +
-                "      if (data.weather && data.weather.length > 0) {" +
-                "        const weather = `Weather in ${data.name}: ${data.weather[0].description}, ${data.main.temp}°C`;" +
-                "        weatherDiv.textContent = weather;" +
-                "      } else {" +
-                "        weatherDiv.textContent = 'Weather data not available';" +
-                "      }" +
-                "    })" +
-                "    .catch(error => {" +
-                "      console.error('Error fetching weather data:', error);" +
-                "      document.getElementById('weather').textContent = 'Error fetching weather data';" +
-                "    });" +
+                "function displayMessage() {" +
+                "  const now = new Date();" +
+                "  const hours = now.getHours();" +
+                "  let message;" +
+                "  if (hours < 12) {" +
+                "    message = 'Good Morning!';" +
+                "  } else if (hours < 18) {" +
+                "    message = 'Good Afternoon!';" +
+                "  } else {" +
+                "    message = 'Good Evening!';" +
+                "  }" +
+                "  document.getElementById('message').textContent = message;" +
+                "}" +
+                "function displayQuote() {" +
+                "  const quotes = [" +
+                "    'The best way to predict the future is to invent it.'," +
+                "    'Life is 10% what happens to us and 90% how we react to it.'," +
+                "    'The only way to do great work is to love what you do.'," +
+                "    'You miss 100% of the shots you don’t take.'," +
+                "    'Success is not the key to happiness. Happiness is the key to success.'" +
+                "  ];" +
+                "  const randomIndex = Math.floor(Math.random() * quotes.length);" +
+                "  const randomQuote = quotes[randomIndex];" +
+                "  document.getElementById('quote').textContent = randomQuote;" +
                 "}" +
                 "</script>" +
                 "</body>" +
