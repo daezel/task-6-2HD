@@ -19,14 +19,23 @@ pipeline {
                 success {
                     echo 'Build using MAVEN successful!!'
                 }
+                failure {
+                    echo 'Build failed!'
+                    emailext(
+                        to: 'daezelgoyal01@gmail.com',
+                        subject: 'Build Failed',
+                        body: 'Build failed!!!',
+                        attachLog: true
+                    )
+                }
             }
         }
         stage('Test') {
             steps {
                 bat 'mvn test'
             }
-            post{
-                success{
+            post {
+                success {
                     emailext(
                         to: 'daezelgoyal01@gmail.com',
                         subject: 'Testing',
@@ -53,6 +62,20 @@ pipeline {
                     bat 'mvn sonar:sonar'
                 }
             }
+            post {
+                success {
+                    echo 'Code quality check successful!'
+                }
+                failure {
+                    echo 'Code quality check failed!'
+                    emailext(
+                        to: 'daezelgoyal01@gmail.com',
+                        subject: 'Code Quality Check Failed',
+                        body: 'Code quality check failed!!!',
+                        attachLog: true
+                    )
+                }
+            }
         }
 
         stage('Docker image Build') {
@@ -61,6 +84,20 @@ pipeline {
                 bat 'docker --version'
                 bat 'docker build -t my-spring-boot-project .'
             }
+            post {
+                success {
+                    echo 'Docker image build successful!'
+                }
+                failure {
+                    echo 'Docker image build failed!'
+                    emailext(
+                        to: 'daezelgoyal01@gmail.com',
+                        subject: 'Docker Image Build Failed',
+                        body: 'Docker image build failed!!!',
+                        attachLog: true
+                    )
+                }
+            }
         }
 
         stage('Docker Deployment') {
@@ -68,6 +105,20 @@ pipeline {
                 echo 'Docker Deployment'
                 bat 'docker-compose down'
                 bat 'docker-compose up -d --build'
+            }
+            post {
+                success {
+                    echo 'Docker deployment successful!'
+                }
+                failure {
+                    echo 'Docker deployment failed!'
+                    emailext(
+                        to: 'daezelgoyal01@gmail.com',
+                        subject: 'Docker Deployment Failed',
+                        body: 'Docker deployment failed!!!',
+                        attachLog: true
+                    )
+                }
             }
         }
 
@@ -83,6 +134,15 @@ pipeline {
             post {
                 success {
                     echo 'Monitoring successful!!'
+                }
+                failure {
+                    echo 'Monitoring failed!'
+                    emailext(
+                        to: 'daezelgoyal01@gmail.com',
+                        subject: 'Monitoring Failed',
+                        body: 'Monitoring failed!!!',
+                        attachLog: true
+                    )
                 }
             }
         }
