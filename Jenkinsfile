@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 success {
-                    echo 'Build successful!!'
+                    echo 'Build using MAVEN successful!!'
                 }
             }
         }
@@ -25,9 +25,22 @@ pipeline {
             steps {
                 bat 'mvn test'
             }
-            post {
-                success {
-                    echo'Testing successful!!'
+            post{
+                success{
+                    emailext(
+                        to: 'daezelgoyal01@gmail.com',
+                        subject: 'Testing',
+                        body: 'Testing successfuly completed!!!', 
+                        attachLog: true
+                    )
+                }
+                failure{
+                    emailext(
+                        to: 'daezelgoyal01@gmail.com',
+                        subject: 'Testing',
+                        body: 'Testing Failed!!!', 
+                        attachLog: true   
+                    )
                 }
             }
         }
